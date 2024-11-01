@@ -5,6 +5,7 @@ Cosmo is a command-line tool for managing and updating image metadata in bulk. I
 ## Table of Contents
 
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Rename Command](#rename-command)
@@ -21,6 +22,33 @@ Cosmo is a command-line tool for managing and updating image metadata in bulk. I
 - **Bulk Metadata Update**: Update image metadata (e.g., title, keywords, copyright status) based on a CSV file.
 - **Sequential Image Renaming**: Rename images in a specified directory and export the results to a CSV file.
 - **Combined Processing**: Run both renaming and metadata updates with a single command.
+
+## Requirements
+
+This project requires ExifTool to be installed on your system.
+
+### Installing ExifTool
+
+- **On macOS**: Use Homebrew
+
+```bash
+  brew install exiftool
+```
+
+- **On Ubuntu/Debian**: Use APT
+
+```bash
+  sudo apt-get update
+  sudo apt-get install -y exiftool
+```
+
+- **_On Windows_**: Download and install ExifTool from the [official website](https://exiftool.org/).
+
+- **Chocolatey** for windows:
+
+```bash
+   choco install exiftool
+```
 
 ## Installation
 
@@ -60,13 +88,13 @@ The `rename` command renames all images in a specified directory sequentially an
 ##### Command Syntax
 
 ```bash
-./cosmo rename [directory] --ext=[file extension]
+cosmo rename [directory] --ext=[file extension]
 ```
 
 ##### Example
 
 ```bash
-./cosmo rename ./testdata --ext=".jpg"
+cosmo rename ./testdata --ext=".jpg"
 ```
 
 This command renames all .jpg images in the ./testdata directory and saves the renaming details in renamed_files.csv within the same directory.
@@ -78,13 +106,13 @@ The `update-metadata` command updates the metadata of all images in a specified 
 ##### Command Syntax
 
 ```bash
-./cosmo update-metadata [csv-file]
+cosmo update-metadata [csv-file]
 ```
 
 ##### Example
 
 ```bash
-./cosmo update-metadata ./testdata/metadata.csv
+cosmo update-metadata ./testdata/metadata.csv
 ```
 
 The CSV file should have the following columns:
@@ -103,13 +131,13 @@ The `process` command combines the functionality of both the `rename` and `updat
 ##### Command Syntax
 
 ```bash
-./cosmo process [directory] --ext=[file extension]
+cosmo process [directory] --ext=[file extension]
 ```
 
 ##### Example
 
 ```bash
-./cosmo process ./testdata --ext=".jpg"
+cosmo process ./testdata --ext=".jpg"
 ```
 
 This command renames all .jpg images in the ./testdata directory and updates the metadata based on the metadata.csv file.
@@ -148,6 +176,12 @@ If you would like to contribute to this project, please open an issue or submit 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Contact for Project
+
+Email: roisfaozi8@gmail.com
+
+Website: [roisfaozi.com](https://www.roisfaozi.com)
 
 ### Support this project
 

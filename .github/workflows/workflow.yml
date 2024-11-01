@@ -27,7 +27,7 @@ jobs:
         run: go mod download
 
       - name: Install ExifTool
-        run: sudo apt-get install -y exiftool
+        run: sudo apt-get update && sudo apt-get install -y exiftool
 
       - name: Run tests
         run: go test ./... -v
