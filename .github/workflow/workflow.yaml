@@ -1,0 +1,30 @@
+# .github/workflows/test.yml
+name: Audit
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*'     # Runs tests on feature branches
+  pull_request:
+    branches:
+      - main            # Runs tests for PRs targeting the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23'  # Specify the Go version required by your project
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test ./... -v
