@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - main
-      - 'feature/*'     # Runs tests on feature branches
+      - '*/*' # Runs tests on feature branches
   pull_request:
     branches:
-      - main            # Runs tests for PRs targeting the main branch
+      - main # Runs tests for PRs targeting the main branch
 
 jobs:
   test:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.23'  # Specify the Go version required by your project
+          go-version: '1.23' # Specify the Go version required by your project
 
       - name: Install dependencies
         run: go mod download
