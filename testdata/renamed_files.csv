@@ -1,3 +1,11 @@
 SourceFile,ObjectName,Keywords,CopyrightStatus,Marked,CopyrightNotice
-..\testdata\image_001.jpeg,image_001.jpeg,,protected,TRUE,All Rights Reserved
-..\testdata\image_002.jpeg,image_002.jpeg,,protected,TRUE,All Rights Reserved
+..\testdata\image_001.jpg,image_001.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_002.jpg,image_002.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_003.jpg,image_003.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_004.jpg,image_004.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_005.jpg,image_005.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_006.jpg,image_006.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_007.jpg,image_007.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_008.jpg,image_008.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_009.jpg,image_009.jpg,,protected,TRUE,All Rights Reserved
+..\testdata\image_010.jpg,image_010.jpg,,protected,TRUE,All Rights Reserved
