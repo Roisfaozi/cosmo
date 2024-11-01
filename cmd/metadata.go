@@ -78,13 +78,11 @@ func UpdateMetadataFromCSV(csvPath string) error {
 	defer e.Close()
 
 	for _, record := range records[1:] {
-		// Periksa apakah record memiliki panjang yang cukup
 		if len(record) < 3 {
 			log.Printf("Skipping record dengan panjang tidak cukup: %v", record)
 			continue
 		}
 
-		// Tentukan nilai default untuk kolom-kolom yang tidak ada
 		filePath := record[0]
 		objectName := record[1]
 		keywords := ""
@@ -92,7 +90,6 @@ func UpdateMetadataFromCSV(csvPath string) error {
 		marked := ""
 		copyrightNotice := ""
 
-		// Periksa apakah kolom-kolom yang diperlukan ada dalam record
 		if len(record) > 2 {
 			keywords = record[2]
 		}
@@ -134,12 +131,10 @@ func updateMetadata(e *exiftool.Exiftool, filePath, objectName, keywords, copyri
 	e.WriteMetadata(metas) // No return value to handle, so we assume success if no panic or log output
 
 	altered := e.ExtractMetadata(filePath)
-	title, err := altered[0].GetString("ObjectName")
+	title, _ := altered[0].GetString("ObjectName")
 
 	fmt.Println("Updated Title: ", title)
-	if err != nil {
-		fmt.Println("Error:", err)
-	}
+	
 	// Log success message
 	log.Printf("Successfully updated metadata for: %s", filePath)
 }

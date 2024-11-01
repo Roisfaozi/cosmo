@@ -12,9 +12,13 @@ import (
 )
 
 func TestUpdateMetadataCommandScenarios(t *testing.T) {
+	// Set direktori relatif ke "testdata"
+	dir := filepath.Join("..", "testdata")
+
+	// Verifikasi bahwa direktori "testdata" ada
+	require.DirExists(t, dir, "Testdata directory should exist")
 	// 1. Tes dengan CSV berisi metadata lengkap
 	t.Run("CompleteMetadataInCSV", func(t *testing.T) {
-		dir := "E:\\NGetik\\golang\\garap\\exif-editor\\testdata"
 		imagePath := filepath.Join(dir, "image_010.jpg")
 
 		// Buat file CSV dengan metadata lengkap
@@ -45,8 +49,7 @@ func TestUpdateMetadataCommandScenarios(t *testing.T) {
 
 	// 2. Tes dengan CSV tanpa beberapa kolom metadata (cek default handling)
 	t.Run("PartialMetadataInCSV", func(t *testing.T) {
-		dir := "E:\\NGetik\\golang\\garap\\exif-editor\\testdata"
-		imagePath := filepath.Join(dir, "image_002.jpg")
+		imagePath := filepath.Join(dir, "image_011.jpg")
 
 		// Buat file CSV dengan metadata parsial
 		csvPath := filepath.Join(dir, "metadata.csv")

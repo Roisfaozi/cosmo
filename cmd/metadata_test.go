@@ -12,12 +12,12 @@ import (
 )
 
 func TestUpdateMetadataCommandScenarios(t *testing.T) {
-	// 1. Tes dengan CSV berisi metadata lengkap
+	dir := filepath.Join("..", "testdata")
+
+	require.DirExists(t, dir, "Testdata directory should exist")
 	t.Run("CompleteMetadataInCSV", func(t *testing.T) {
-		dir := "E:\\NGetik\\golang\\garap\\exif-editor\\testdata"
 		imagePath := filepath.Join(dir, "image_010.jpg")
 
-		// Buat file CSV dengan metadata lengkap
 		csvPath := filepath.Join(dir, "metadata.csv")
 		file, err := os.Create(csvPath)
 		require.NoError(t, err)
@@ -26,29 +26,23 @@ func TestUpdateMetadataCommandScenarios(t *testing.T) {
 		file.WriteString("SourceFile,ObjectName,Keywords,CopyrightStatus,Marked,CopyrightNotice\n")
 		file.WriteString(fmt.Sprintf("%s,Sample Image,Keyword1;Keyword2,protected,TRUE,All Rights Reserved\n", imagePath))
 
-		// Jalankan UpdateMetadataCommand
 		err = UpdateMetadataFromCSV(csvPath)
 		require.NoError(t, err)
 
-		// Validasi metadata
 		e, err := exiftool.NewExiftool()
 		require.NoError(t, err)
 		defer e.Close()
 
 		meta := e.ExtractMetadata(imagePath)
 		require.Len(t, meta, 1)
-		fmt.Println("updated metadata for: ", meta[0])
 
 		title, _ := meta[0].GetString("Title")
 		assert.Equal(t, "Sample Image", title, "Title should match the CSV entry")
 	})
 
-	// 2. Tes dengan CSV tanpa beberapa kolom metadata (cek default handling)
 	t.Run("PartialMetadataInCSV", func(t *testing.T) {
-		dir := "E:\\NGetik\\golang\\garap\\exif-editor\\testdata"
-		imagePath := filepath.Join(dir, "image_011.jpg")
+		imagePath := filepath.Join(dir, "image_009.jpg")
 
-		// Buat file CSV dengan metadata parsial
 		csvPath := filepath.Join(dir, "metadata.csv")
 		file, err := os.Create(csvPath)
 		require.NoError(t, err)
@@ -57,11 +51,9 @@ func TestUpdateMetadataCommandScenarios(t *testing.T) {
 		file.WriteString("SourceFile,ObjectName,Keywords\n")
 		file.WriteString(fmt.Sprintf("%s,Partial Image,Keyword1;Keyword2\n", imagePath))
 
-		// Jalankan UpdateMetadataCommand
 		err = UpdateMetadataFromCSV(csvPath)
 		require.NoError(t, err)
 
-		// Validasi metadata
 		e, err := exiftool.NewExiftool()
 		require.NoError(t, err)
 		defer e.Close()

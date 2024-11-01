@@ -42,7 +42,6 @@ func UpdateMetadataCommand() *cobra.Command {
 	return cmd
 }
 
-
 // UpdateMetadataFromCSV reads a CSV file and updates the metadata of the files
 // listed in the CSV file. The CSV file should contain the following columns:
 //
